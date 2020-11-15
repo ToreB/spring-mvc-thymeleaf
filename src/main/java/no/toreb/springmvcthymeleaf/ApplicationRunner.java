@@ -1,13 +1,13 @@
-package no.toreb.springwebfluxthymeleaf;
+package no.toreb.springmvcthymeleaf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringWebfluxThymeleafApplication {
+public class ApplicationRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringWebfluxThymeleafApplication.class, args);
+        SpringApplication.run(ApplicationRunner.class, args);
     }
 
 }

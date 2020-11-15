@@ -23,29 +23,29 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.1'
 
-    implementation 'org.webjars.npm:material-icons:0.3.1'
+    implementation 'org.webjars:material-design-icons:3.0.1'
     implementation 'org.webjars:materializecss:1.0.0'
+    implementation 'org.webjars:webjars-locator:0.40'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'io.r2dbc:r2dbc-h2'
 
     annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.flywaydb.flyway-test-extensions:flyway-spring-test:7.0.0'
 }

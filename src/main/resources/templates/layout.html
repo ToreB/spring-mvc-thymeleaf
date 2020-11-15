@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="webjars/materializecss/css/materialize.min.css">
+    <link rel="stylesheet" href="webjars/material-design-icons/material-icons.css">
+    <script src="webjars/materializecss/js/materialize.min.js"></script>
+    <title>Layout</title>
+</head>
+<body>
+    <header>
+        <h1>Layout header</h1>
+    </header>
+
+    <section layout:fragment="content">
+        <p>Page content goes here</p>
+    </section>
+
+    <footer>
+        <p>Layout footer</p>
+    </footer>
+</body>
+</html>
