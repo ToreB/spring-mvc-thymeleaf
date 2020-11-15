@@ -9,10 +9,10 @@ main {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 64px;
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*height: 64px;*/
     font-size: small;
 }
 
@@ -22,4 +22,16 @@ nav {
 
 .bold-text {
     font-weight: bold;
+}
+
+.container {
+    border: 1px dashed black;
+}
+
+.row {
+    border: 1px dashed red;
+}
+
+.col {
+    border: 1px dashed blue;
 }
