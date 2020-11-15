@@ -5,22 +5,58 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" href="webjars/materializecss/css/materialize.min.css">
-    <link rel="stylesheet" href="webjars/material-design-icons/material-icons.css">
-    <script src="webjars/materializecss/js/materialize.min.js"></script>
+    <link rel="stylesheet" data-th-href="@{webjars/materializecss/css/materialize.min.css}">
+    <link rel="stylesheet" data-th-href="@{webjars/material-design-icons/material-icons.css}">
+    <link rel="stylesheet" data-th-href="@{/css/styles.css}">
     <title>Layout</title>
 </head>
 <body>
-    <header>
-        <h1>Layout header</h1>
-    </header>
+<header>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo" data-th-text="${buildProperties.name}">Application name</a>
+                <ul class="right">
+                    <li><a data-th-href="@{/}">Home</a></li>
+                    <li>
+                        <a class="dropdown-trigger"
+                           href="#"
+                           data-target="user-dropdown">
+                            <i class="material-icons left">person</i>
+                            <span data-th-text="${username}">Username</span>
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <ul id="user-dropdown" class="dropdown-content">
+        <li><a data-th-href="@{/logout}">Logout</a></li>
+    </ul>
+</header>
 
-    <section layout:fragment="content">
-        <p>Page content goes here</p>
-    </section>
+<main layout:fragment="content">
+    <p>Page content goes here</p>
+</main>
 
-    <footer>
-        <p>Layout footer</p>
-    </footer>
+<footer class="page-footer valign-wrapper">
+    <div>
+        <div class="row">
+            <div class="col">
+                <p>Application version:
+                    <span class="bold-text" data-th-text="${buildProperties.version}">Application version</span>
+                </p>
+            </div>
+            <div class="col">
+                <p>Build time:
+                    <span class="bold-text" data-th-text="${buildProperties.time}">Application build time</span></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script data-th-src="@{webjars/materializecss/js/materialize.min.js}"></script>
+<script data-th-src="@{/js/scripts.js}"></script>
 </body>
 </html>
