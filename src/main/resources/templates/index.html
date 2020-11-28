@@ -6,6 +6,8 @@
 <body>
 <main layout:fragment="content">
 
+    <div id="react"></div>
+
     <div class="row">
         <div class="col s9">
             <div class="row">
@@ -27,7 +29,7 @@
             <div class="row">
                 <div class="col s12">
                     <h5>Another row</h5>
-                    <p>This one takes the full width of the page.</p>
+                    <p>This one takes the full width of the container.</p>
                 </div>
             </div>
         </div>
@@ -66,5 +68,20 @@
     </div>
 
 </main>
+
+<div layout:fragment="additional-scripts">
+    <script data-th-src="@{webjars/react/umd/react.production.min.js}"></script>
+    <script data-th-src="@{webjars/react-dom/umd/react-dom.production.min.js}"></script>
+    <script data-th-src="@{/js/Greetings.js}"></script>
+    <script data-th-inline="javascript">
+        window.onload = function () {
+            ReactDOM.render(
+                    // Integrates Thymeleaf and MVC model properties with React through React properties.
+                    React.createElement(Greetings, {name: /*[[${username}]]*/ 'default'}),
+                    document.getElementById('react')
+            );
+        }
+    </script>
+</div>
 </body>
 </html>

@@ -14,6 +14,15 @@
 
     <properties>
         <java.version>11</java.version>
+
+        <thymeleaf-layout-dialect.version>2.5.1</thymeleaf-layout-dialect.version>
+        <material-design-icons.version>3.0.1</material-design-icons.version>
+        <materializecss.version>1.0.0</materializecss.version>
+        <webjars-locator.version>0.40</webjars-locator.version>
+        <babel.version>6.26.0</babel.version>
+        <react.version>16.7.0</react.version>
+
+        <babel-maven-plugin.version>1.6</babel-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -48,23 +57,38 @@
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
-            <version>2.5.1</version>
+            <version>${thymeleaf-layout-dialect.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>material-design-icons</artifactId>
-            <version>3.0.1</version>
+            <version>${material-design-icons.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>materializecss</artifactId>
-            <version>1.0.0</version>
+            <version>${materializecss.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator</artifactId>
-            <version>0.40</version>
+            <version>${webjars-locator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>babel-standalone</artifactId>
+            <version>${babel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>react</artifactId>
+            <version>${react.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>react-dom</artifactId>
+            <version>${react.version}</version>
         </dependency>
 
         <dependency>
@@ -119,6 +143,60 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-babel</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.webjars.npm</groupId>
+                                    <artifactId>babel-standalone</artifactId>
+                                    <version>${babel.version}</version>
+                                    <type>jar</type>
+                                    <includes>**\/*.js</includes>
+                                    <outputDirectory>${project.build.directory}/js</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.jarslab.maven</groupId>
+                <artifactId>babel-maven-plugin</artifactId>
+                <version>${babel-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>js-transpile</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>babel</goal>
+                        </goals>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <babelSrc>${project.build.directory}/js/META-INF/resources/webjars/babel-standalone/6.26.0/babel.min.js</babelSrc>
+                            <sourceDir>${project.build.directory}/classes/static/js</sourceDir>
+                            <targetDir>${project.build.directory}/classes/static/js</targetDir>
+                            <jsSourceIncludes>
+                                <jsSourceInclude>*.js*</jsSourceInclude>
+                            </jsSourceIncludes>
+<!--                            <prefix>trans-</prefix>-->
+                            <presets>react,es2015</presets>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

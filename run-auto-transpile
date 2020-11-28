@@ -1,0 +1,47 @@
+#!/bin/bash
+
+function datetime() {
+  echo "$(date +%F'T'%T)"
+}
+
+function timestamp() {
+  echo "$(date -r "$1" +%s)"
+}
+
+FILES='target/classes/static/js/*'
+declare -A timestamps=()
+
+while true; do
+
+  changed='false'
+  for file in $FILES; do
+    # Gets the timestamp of the file
+    timestamp=$(timestamp $file)
+
+    # Initializes timestamps for file
+    if [ "${timestamps[$file]}" == "" ]; then
+      timestamps[$file]=$timestamp
+    fi
+
+    # Checks if timestamp of file has changed
+    if [ $timestamp != "${timestamps[$file]}" ]; then
+      echo "$(datetime) - File $file changed"
+      changed='true'
+      break
+    fi
+  done
+
+  # Runs transpile if file has changed
+  if [ $changed == "true" ]; then
+    echo "$(datetime) - Running babel transpile"
+    mvn -q babel:babel@js-transpile
+    echo "$(datetime) - Babel transpile finished"
+
+    # Updates all timestamps after transpile
+    for file in $FILES; do
+      timestamps[$file]=$(timestamp $file)
+    done
+  fi
+
+  sleep 1
+done
