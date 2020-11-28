@@ -6,21 +6,34 @@
 <body>
 <main layout:fragment="content">
 
-        <div class="row">
-            <div class="col s9">
-                <h5>Some content</h5>
-                <p>This is some text.</p>
-                <h5>Some tabs</h5>
-                <ul class="tabs">
-                    <li class="tab col s2"><a href="#tab1">Tab 1</a></li>
-                    <li class="tab col s2"><a href="#tab2">Tab 2</a></li>
-                    <li class="tab col s2"><a href="#tab3">Tab 3</a></li>
-                </ul>
-                <div id="tab1" class="col s12"><p>Tab 1 content!</p></div>
-                <div id="tab2" class="col s12"><p>Tab 2 content!</p></div>
-                <div id="tab3" class="col s12"><p>Tab 3 content!</p></div>
+    <div class="row">
+        <div class="col s9">
+            <div class="row">
+                <div class="col s12">
+                    <h5>Some content</h5>
+                    <p>This is some text.</p>
+                    <h5>Some tabs</h5>
+                    <ul class="tabs">
+                        <li class="tab col s2"><a href="#tab1">Tab 1</a></li>
+                        <li class="tab col s2"><a href="#tab2">Tab 2</a></li>
+                        <li class="tab col s2"><a href="#tab3">Tab 3</a></li>
+                    </ul>
+                    <div id="tab1" class="col s12"><p>Tab 1 content!</p></div>
+                    <div id="tab2" class="col s12"><p>Tab 2 content!</p></div>
+                    <div id="tab3" class="col s12"><p>Tab 3 content!</p></div>
+                </div>
             </div>
-            <div class="col s3">
+
+            <div class="row">
+                <div class="col s12">
+                    <h5>Another row</h5>
+                    <p>This one takes the full width of the page.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s3">
+            <div class="col s12">
                 <h5>Some side content</h5>
                 <div class="card">
                     <div class="card-content">
@@ -49,14 +62,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="row">
-            <div class="col s12">
-                <h5>Another row</h5>
-                <p>This one takes the full width of the page.</p>
-            </div>
-        </div>
+    </div>
 
 </main>
 </body>
